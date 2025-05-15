@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Game {
     private Player player1;
     private Player player2;
@@ -34,16 +36,35 @@ public class Game {
         switchPlayer();
 
       }
-      if(currentPlayer != player1){
-        System.out.println(player2 + " wins!");
-      } else {
-        System.out.println(player1 + " wins!");
-      }
+
+      endGame();
+      
 
     }
     
     public void endGame(){
-        
+      if(currentPlayer == player1){
+        System.out.println(player2.getName() + " wins!");
+        player2.updateScore(1);
+      } else {
+        System.out.println(player1.getName() + " wins!");
+        player1.updateScore(1);
+      }
+
+      System.out.println(player1.getName() + "'s score is " + player1.getScore());
+      System.out.println(player2.getName() + "'s score is " + player2.getScore());
+
+
+      System.out.println("Do you want to play again?");
+      Scanner sc = new Scanner(System.in);
+      String answer = sc.nextLine();
+      
+      
+      if (answer.equals ("yes")){
+        Board.populate();
+        play();
+      }
+
     }
 
     
